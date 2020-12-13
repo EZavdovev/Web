@@ -21,7 +21,17 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       # Mount source-code for development
       - ./:/app
-
+  
+  phpmyadmin:
+          image: phpmyadmin/phpmyadmin
+          ports:
+                  -'8888:80'
+          enviroment:
+                  -PMA_ARBITRARY=1
+                  -PMA_HOST=mysql
+          depends_on:
+                  -mysql
+ 
   mysql:
     image: mysql:5.7
     environment:
